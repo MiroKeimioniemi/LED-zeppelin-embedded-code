@@ -68,7 +68,7 @@ void setup() {
     Serial.println("Failed to begin qt");
 
   // Calibrate the sensors on startup by measuring the maximum baseline values for each pin
-  for (int i = 0; i < 100; i++) {
+  for (int i = 0; i < 1000; i++) {
       // qt1_baseline = max(qt1_baseline, qt_1.measure());
       // qt2_baseline = max(qt2_baseline, qt_2.measure());
       qt3_baseline = max(qt3_baseline, qt_3.measure());
@@ -84,7 +84,7 @@ void setup() {
   Wire.onRequest(requestEvent);
 }
 
-short qt_threshold = 17;      // Define the threshold for increase over baseline values for detecting touch
+short qt_threshold = 19;      // Define the threshold for increase over baseline values for detecting touch
 short max_index = 4;          // Define the index of the currently activated pin
 unsigned long tap_start = 0;  // Create a variable for holding the timestamp of the start of a tap gesture
 
@@ -114,7 +114,7 @@ void loop() {
   // Store the differences between the current readings and their baseline values for each sensor from 1 to 7
   // short qts[] = {qt_threshold, qt1 - qt1_baseline, qt2 - qt2_baseline, qt3 - qt3_baseline, qt4 - qt4_baseline, qt5 - qt5_baseline, qt6 - qt6_baseline, qt7 - qt7_baseline};
   // Less pins because I broke the board connections and wonky order because I connected them funnily in the lamp
-  short qts[] = {qt_threshold, qt6 - qt6_baseline, qt4 - qt4_baseline, qt3 - qt3_baseline, qt5 - qt5_baseline, qt7 - qt7_baseline};
+  short qts[] = {qt_threshold, (short)(qt6 - qt6_baseline), (short)(qt4 - qt4_baseline), (short)(qt3 - qt3_baseline), (short)(qt5 - qt5_baseline), (short)(qt7 - qt7_baseline)};
   short previous_max_index = max_index;
   // Maintain a rolling average using the previous max indices
   previous_max_indices.pop_front();

@@ -34,7 +34,7 @@ CRGB shortLEDs1[NUM_LEDS_2];
 // Define lamp state variables and set defaults
 int isOn = true;            // Boolean flag to indicate whether the LEDs should be on or off
 int brightness = 100;       // Brightness level of the LEDs (0-255)
-CRGB color = CRGB::White;   // Color of the LEDs as red, green and blue components (0-255)
+CRGB color = CRGB(0xFF, 0xA6, 0x66);   // Color of the LEDs as red, green and blue components (0-255)
 int animation = 1;          // Animation mode for the LEDs (0-3) 0 = static, 1 = breathing, 2 = rainbow, 3 = brightening
 time_t nextAlarm;           // Time for when to trigger the next alarm (in seconds since the Unix epoch)
 time_t currentTime;         // Current time (in seconds since the Unix epoch)
